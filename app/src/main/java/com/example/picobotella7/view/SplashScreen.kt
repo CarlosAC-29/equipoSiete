@@ -1,4 +1,4 @@
-package com.example.picobotella7
+package com.example.picobotella7.view
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
