@@ -49,6 +49,10 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
+    // ViewModel
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1")
+    // LiveData
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.3.1")
     //Lottie
     implementation ("com.airbnb.android:lottie:6.1.0")
 }
