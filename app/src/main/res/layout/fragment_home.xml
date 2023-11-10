@@ -3,12 +3,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/fondohome"
     tools:context=".view.fragment.HomeFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+    <ImageView
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:src="@drawable/botella"
+        android:layout_gravity="center"
+
+        />
     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="5"
+        android:textSize="60sp"
+        android:textColor="#376143"
+        android:fontFamily="@font/agbalumoregular"
+        android:layout_gravity="center"
+        />
+
+    <Button
+        android:id="@+id/parpadeoButton"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:text="Mi Botón"
+        android:layout_gravity="bottom"
+        />
 
 </FrameLayout>
