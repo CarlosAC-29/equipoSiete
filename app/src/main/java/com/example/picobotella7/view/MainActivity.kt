@@ -19,5 +19,6 @@ class MainActivity : AppCompatActivity() {
     fun reproduceSoundPool(){
         mediaPlayer = MediaPlayer.create(this, R.raw.soundtrack)
         mediaPlayer?.start()
+        mediaPlayer?.isLooping = true
     }
 }
