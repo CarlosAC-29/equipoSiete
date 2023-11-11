@@ -75,6 +75,7 @@ class HomeFragment : Fragment() {
         // Configurar el listener para guardar el ángulo final de la rotación actual
         rotateAnimation.setAnimationListener(object : Animation.AnimationListener {
             override fun onAnimationStart(animation: Animation?) {
+                lottieBottleAnimation.visibility = View.GONE // Ocultar el botón antes de iniciar la animación
                 mediaPlayer?.start()
                 val stopSoundDelay = 4000L
                 view?.postDelayed({
@@ -86,6 +87,8 @@ class HomeFragment : Fragment() {
             override fun onAnimationEnd(animation: Animation?) {
                 // Aquí puedes ejecutar código al final de la animación de rotación si es necesario
                 lastRotationDegrees = toDegrees
+                lottieBottleAnimation.visibility = View.VISIBLE // Restaurar la visibilidad al finalizar la animación
+
             }
 
             override fun onAnimationRepeat(animation: Animation?) {
