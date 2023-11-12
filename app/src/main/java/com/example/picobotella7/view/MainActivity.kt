@@ -6,7 +6,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import android.widget.Toolbar
 import com.example.picobotella7.R
+import com.example.picobotella7.view.fragment.HomeFragment
 
 class MainActivity : AppCompatActivity() {
     var mediaPlayer: MediaPlayer? = null
@@ -21,4 +23,6 @@ class MainActivity : AppCompatActivity() {
         mediaPlayer?.start()
         mediaPlayer?.isLooping = true
     }
+
+
 }

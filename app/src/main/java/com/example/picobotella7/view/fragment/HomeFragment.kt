@@ -4,6 +4,7 @@ import android.animation.ObjectAnimator
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -14,21 +15,12 @@ import android.view.animation.RotateAnimation
 import android.view.animation.TranslateAnimation
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.navigation.fragment.findNavController
 import com.airbnb.lottie.LottieAnimationView
 import com.example.picobotella7.R
 
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [HomeFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class HomeFragment : Fragment() {
+    private lateinit var instructionButtonView: ImageView
     private lateinit var lottieBottleAnimation: LottieAnimationView
     private var lastRotationDegrees = 0.0f
     private lateinit var numberCountDown: TextView
@@ -46,14 +38,26 @@ class HomeFragment : Fragment() {
         lottieBottleAnimation = view.findViewById(R.id.lottieBottleAnimation)
         numberCountDown = view.findViewById(R.id.numberCountDown)
         mediaPlayer = MediaPlayer.create(requireContext(), R.raw.bottlesoundtrack)
+        instructionButtonView = view.findViewById(R.id.instructionButtonView)
+
+        goInstructions()
+        startGame()
 
 
+        return view
+    }
+
+    private fun startGame(){
         lottieBottleAnimation.setOnClickListener {
             spinBottle()
             startCountdown()
         }
+    }
 
-        return view
+    private fun goInstructions(){
+        instructionButtonView.setOnClickListener{
+            findNavController().navigate(R.id.action_homeFragment2_to_gameInstructions)
+        }
     }
 
     private fun spinBottle() {
@@ -121,24 +125,4 @@ class HomeFragment : Fragment() {
         mediaPlayer = null
     }
 
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment HomeFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            HomeFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-    }
 }
