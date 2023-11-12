@@ -16,10 +16,7 @@
         android:background="@drawable/fondohome"
         tools:context=".view.fragment.HomeFragment">
 
-        <include
-            android:id="@+id/mytoolbar"
-            layout="@layout/fragment_toolbar"
-            />
+        <include layout="@layout/fragment_toolbar" />
 
         <ImageView
             android:id="@+id/bottleView"

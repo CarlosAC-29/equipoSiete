@@ -16,21 +16,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         reproduceSoundPool()
-        framentoDinamico()
     }
 
     fun reproduceSoundPool(){
         mediaPlayer = MediaPlayer.create(this, R.raw.soundtrack)
         mediaPlayer?.start()
         mediaPlayer?.isLooping = true
-    }
-
-    private fun framentoDinamico(){
-        val fragmentManager = supportFragmentManager
-        val home = HomeFragment()
-        fragmentManager.beginTransaction()
-            .replace(R.id.homeFragment, home)
-            .commit()
     }
 
 

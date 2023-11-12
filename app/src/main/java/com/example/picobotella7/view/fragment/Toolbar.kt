@@ -20,19 +20,11 @@ class Toolbar : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        Log.d("ToolbarFragment", "onCreateView called")
         val view = inflater.inflate(R.layout.fragment_toolbar, container, false)
-        instructionButtonView = view.findViewById(R.id.instructionButtonView)
-
         return view
 
     }
-    private fun navigationFragment() {
-        instructionButtonView.setOnClickListener{
-            Log.d("TAG","hola")
-        }
-    }
+
 
 
 }

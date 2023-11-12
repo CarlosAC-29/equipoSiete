@@ -6,7 +6,7 @@
 
     </data>
 
-    <FrameLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".view.fragment.Toolbar">
@@ -21,7 +21,7 @@
                 android:background="@drawable/fondohome">
 
                 <androidx.appcompat.widget.Toolbar
-                    android:id="@+id/mytoolbar"
+                    android:id="@+id/toolbarFragment"
                     android:layout_width="360dp"
                     android:layout_gravity="center"
                     android:layout_height="?attr/actionBarSize"
@@ -86,5 +86,5 @@
             </com.google.android.material.appbar.AppBarLayout>
 
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
-    </FrameLayout>
+    </RelativeLayout>
 </layout>
