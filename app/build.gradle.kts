@@ -55,4 +55,9 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.3.1")
     //Lottie
     implementation ("com.airbnb.android:lottie:6.1.0")
+
+    implementation("androidx.coordinatorlayout:coordinatorlayout:1.2.0")
+    implementation("androidx.drawerlayout:drawerlayout:1.2.0")
+    implementation("androidx.viewpager2:viewpager2:1.0.0")
+
 }
