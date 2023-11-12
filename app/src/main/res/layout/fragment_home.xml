@@ -15,7 +15,7 @@
 
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/bottleView"
             android:layout_width="300dp"
             android:layout_height="300dp"
             android:layout_gravity="center"
@@ -29,18 +29,19 @@
             app:layout_constraintVertical_bias="0.51" />
 
         <TextView
+            android:id="@+id/numberCountDown"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/agbalumoregular"
             android:text="5"
-            android:textColor="#376143"
+            android:textColor="#ff3d00"
             android:textSize="60sp"
             app:layout_constraintBottom_toTopOf="@+id/guideline2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/imageView"
+            app:layout_constraintTop_toTopOf="@+id/bottleView"
             app:layout_constraintVertical_bias="0.506" />
 
 
@@ -50,8 +51,10 @@
             android:layout_height="100dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.882"
             app:lottie_autoPlay="true"
             app:lottie_fileName="buttonhome.json"
             app:lottie_loop="true"
@@ -71,6 +74,7 @@
             android:orientation="horizontal"
             app:layout_constraintGuide_begin="535dp" />
 
+
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
@@ -82,8 +86,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lottieBottleAnimation"
-            app:layout_constraintVertical_bias="0.555" />
+            app:layout_constraintTop_toTopOf="@+id/guideline2"
+            app:layout_constraintVertical_bias="0.839" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
