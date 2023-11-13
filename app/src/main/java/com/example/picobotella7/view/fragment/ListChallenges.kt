@@ -15,15 +15,7 @@ import com.example.picobotella7.model.Challenge
 import com.example.picobotella7.view.adapter.ChallengesAdapter
 import com.example.picobotella7.view.dialog.DialogAdd.Companion.showDialog
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 
-
-/**
- * A simple [Fragment] subclass.
- * Use the [ListChallenges.newInstance] factory method to
- * create an instance of this fragment.
- */
 class ListChallenges : Fragment() {
     private lateinit var binding: FragmentListChallengesBinding
 
@@ -34,7 +26,6 @@ class ListChallenges : Fragment() {
         binding = FragmentListChallengesBinding.inflate(inflater,container,false)
         goHome()
         controladores()
-        dialogAdd()
         binding.lifecycleOwner = this
         return binding.root
     }
@@ -45,7 +36,8 @@ class ListChallenges : Fragment() {
         }
     }
     private fun controladores() {
-        recycler()
+        dialogAdd()
+
     }
     private fun recycler() {
 
@@ -66,7 +58,7 @@ class ListChallenges : Fragment() {
     }
     private  fun dialogAdd(){
         binding.fbagregar.setOnClickListener {
-            showDialog(binding.root.context).show()
+            showDialog(binding.root.context)
         }
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

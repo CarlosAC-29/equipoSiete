@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
@@ -19,15 +21,13 @@
         android:layout_height="56dp"
         android:layout_marginTop="16dp"
         android:hint="Escriba el reto"
+        android:inputType="text"
+        android:maxLength="200"
         />
 
-    <!-- Agregar botones de Cancelar y Guardar -->
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="12dp">
+        android:layout_height="match_parent">
 
         <Button
             android:id="@+id/buttonCancel"
@@ -35,18 +35,30 @@
             android:layout_height="40dp"
             android:backgroundTint="#FF3D00"
             android:text="Cancelar"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="3dp" />
+            android:textColor="#FFFFFF"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.324"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
 
         <Button
             android:id="@+id/buttonSave"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
+            android:backgroundTint="#A19D9C"
+            android:enabled="true"
             android:text="Guardar"
             android:textColor="#FFFFFF"
-            android:backgroundTint="#A19D9C"
-            android:layout_marginStart="3dp"
-            android:enabled="true"/>
-    </LinearLayout>
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.892"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Agregar botones de Cancelar y Guardar -->
 
 </LinearLayout>
