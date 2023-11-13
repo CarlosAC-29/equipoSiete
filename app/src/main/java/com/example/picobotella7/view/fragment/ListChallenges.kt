@@ -1,27 +1,33 @@
 package com.example.picobotella7.view.fragment
 
 import android.os.Bundle
-import android.util.Log
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
-import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.picobotella7.R
 import com.example.picobotella7.databinding.FragmentGameInstructionsBinding
+import com.example.picobotella7.databinding.FragmentListChallengesBinding
 
-class GameInstructions : Fragment() {
+// TODO: Rename parameter arguments, choose names that match
+// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 
-    private lateinit var binding: FragmentGameInstructionsBinding
+
+/**
+ * A simple [Fragment] subclass.
+ * Use the [ListChallenges.newInstance] factory method to
+ * create an instance of this fragment.
+ */
+class ListChallenges : Fragment() {
+    private lateinit var binding: FragmentListChallengesBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentGameInstructionsBinding.inflate(inflater, container, false)
+        binding = FragmentListChallengesBinding.inflate(inflater,container,false)
         goHome()
         binding.lifecycleOwner = this
         return binding.root
@@ -36,8 +42,8 @@ class GameInstructions : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val toolbar = binding.toolbarinclude.toolbartext
-        val toolbarTitle:TextView = toolbar.findViewById(R.id.toolbartext)
-        toolbarTitle.text = "Reglas del Juego"
+        val toolbarTitle: TextView = toolbar.findViewById(R.id.toolbartext)
+        toolbarTitle.text = "Retos"
 
     }
 }

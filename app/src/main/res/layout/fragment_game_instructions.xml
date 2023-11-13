@@ -15,14 +15,16 @@
         tools:context=".view.fragment.GameInstructions"
         android:background="#4C4848" >
 
-        <include
-        android:id="@+id/toolbarinclude"
-        layout="@layout/toolbar"
-        />
+
 
         <androidx.constraintlayout.widget.ConstraintLayout
+
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+            <include
+                android:id="@+id/toolbarinclude"
+                layout="@layout/toolbar"
+                />
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline2"
                 android:layout_width="wrap_content"

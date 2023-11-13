@@ -21,6 +21,7 @@ import com.example.picobotella7.R
 
 class HomeFragment : Fragment() {
     private lateinit var instructionButtonView: ImageView
+    private lateinit var challengesButtonView: ImageView
     private lateinit var lottieBottleAnimation: LottieAnimationView
     private var lastRotationDegrees = 0.0f
     private lateinit var numberCountDown: TextView
@@ -39,8 +40,9 @@ class HomeFragment : Fragment() {
         numberCountDown = view.findViewById(R.id.numberCountDown)
         mediaPlayer = MediaPlayer.create(requireContext(), R.raw.bottlesoundtrack)
         instructionButtonView = view.findViewById(R.id.instructionButtonView)
-
+        challengesButtonView=view.findViewById(R.id.challengesButtonView)
         goInstructions()
+        goChallenges()
         startGame()
 
 
@@ -57,6 +59,11 @@ class HomeFragment : Fragment() {
     private fun goInstructions(){
         instructionButtonView.setOnClickListener{
             findNavController().navigate(R.id.action_homeFragment2_to_gameInstructions)
+        }
+    }
+    private fun goChallenges(){
+        challengesButtonView.setOnClickListener{
+            findNavController().navigate(R.id.action_homeFragment2_to_listChallenges)
         }
     }
 

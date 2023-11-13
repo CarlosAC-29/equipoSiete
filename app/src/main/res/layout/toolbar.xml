@@ -32,7 +32,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="Reglas del Juego"
+                    android:text="ddddd"
                     android:fontFamily="@font/agbalumoregular"
                     android:textAlignment="center"
                     android:textColor="#ff3d00"
