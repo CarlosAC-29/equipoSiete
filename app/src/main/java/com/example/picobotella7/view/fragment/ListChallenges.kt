@@ -29,6 +29,7 @@ class ListChallenges : Fragment() {
     ): View? {
         binding = FragmentListChallengesBinding.inflate(inflater,container,false)
         goHome()
+        controladores()
         binding.lifecycleOwner = this
         return binding.root
     }
@@ -37,6 +38,9 @@ class ListChallenges : Fragment() {
         binding.toolbarinclude.GoHomeButton.setNavigationOnClickListener {
             findNavController().navigateUp()
         }
+    }
+    private fun controladores() {
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
