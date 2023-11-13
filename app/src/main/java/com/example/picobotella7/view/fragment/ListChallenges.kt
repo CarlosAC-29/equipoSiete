@@ -7,9 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.picobotella7.R
 import com.example.picobotella7.databinding.FragmentGameInstructionsBinding
 import com.example.picobotella7.databinding.FragmentListChallengesBinding
+import com.example.picobotella7.model.Challenge
+import com.example.picobotella7.view.adapter.ChallengesAdapter
+import com.example.picobotella7.view.dialog.DialogAdd.Companion.showDialog
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -30,6 +34,7 @@ class ListChallenges : Fragment() {
         binding = FragmentListChallengesBinding.inflate(inflater,container,false)
         goHome()
         controladores()
+        dialogAdd()
         binding.lifecycleOwner = this
         return binding.root
     }
@@ -40,9 +45,30 @@ class ListChallenges : Fragment() {
         }
     }
     private fun controladores() {
-
+        recycler()
     }
+    private fun recycler() {
 
+        var listaRetos= mutableListOf( Challenge(3,"holaaaaa 1"),
+            Challenge(4,"holaaaaa 2"),
+            Challenge(5,"holaaaaa 3"),
+            Challenge(6,"holaaaaa 4"),
+            Challenge(7,"holaaaaa 5"),
+            Challenge(8,"holaaaaa 6"),
+            Challenge(9,"holaaaaa 7"),
+            Challenge(10,"holaaaaa 8"),)
+
+        val recycler= binding.recyclerview
+        recycler.layoutManager= LinearLayoutManager(context)
+        val adapter =ChallengesAdapter(listaRetos)
+        recycler.adapter=adapter
+        adapter.notifyDataSetChanged()
+    }
+    private  fun dialogAdd(){
+        binding.fbagregar.setOnClickListener {
+            showDialog(binding.root.context).show()
+        }
+    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val toolbar = binding.toolbarinclude.toolbartext
