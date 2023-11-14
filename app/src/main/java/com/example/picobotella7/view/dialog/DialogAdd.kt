@@ -16,72 +16,72 @@ import com.example.picobotella7.model.Challenge
 import com.example.picobotella7.viewmodel.challengeViewModel
 import androidx.fragment.app.viewModels
 
-class DialogAdd {
+class DialogAdd (private val challengeViewModel: challengeViewModel, private val onClose: () -> Unit){
 
-    companion object {
-        fun showDialog(context: Context) {
-            val builder = AlertDialog.Builder(context).create()
-            
+    fun showDialog(context: Context) {
+        val builder = AlertDialog.Builder(context).create()
 
-            builder.setCancelable(false)
+        builder.setCancelable(false)
 
-            // Crear un diseño personalizado para el diálogo
-            val view = LayoutInflater.from(context).inflate(R.layout.layout_add_dialog, null)
-            val editText = view.findViewById<EditText>(R.id.editTextDescription)
-            val saveButton = view.findViewById<Button>(R.id.buttonSave)
-            val cancelButton = view.findViewById<Button>(R.id.buttonCancel)
+        // Crear un diseño personalizado para el diálogo
+        val view = LayoutInflater.from(context).inflate(R.layout.layout_add_dialog, null)
+        val editText = view.findViewById<EditText>(R.id.editTextDescription)
+        val saveButton = view.findViewById<Button>(R.id.buttonSave)
+        val cancelButton = view.findViewById<Button>(R.id.buttonCancel)
 
-            // Deshabilitar el botón "Guardar" al principio
-            saveButton.isEnabled = false
+        // Deshabilitar el botón "Guardar" al principio
+        saveButton.isEnabled = false
 
-            // Habilitar el botón "Guardar" cuando se ingrese texto
-            editText.addTextChangedListener(object: TextWatcher{
-                override fun afterTextChanged(s: Editable?) {
-                    //
-                }
-                override fun beforeTextChanged(
-                    s: CharSequence?,
-                    start: Int,
-                    count: Int,
-                    after: Int
-                ) {
-                    //
-                }
-                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                    Log.d("DialogAdd", "Texto cambiado: $s")
-                    if (editText.length()>0){
-                        saveButton.isEnabled= true
-                        saveButton.setBackgroundColor(Color.parseColor("#FF3D00"))
-                    }
-                    else {
-                        saveButton.isEnabled= false
-                        saveButton.setBackgroundColor(Color.parseColor("#A19D9C"))
-                    }
-                }
-            })
-            builder.setView(view)
-
-            fun saveChallenge(){
-                val  challengetext = editText.text.toString()
-
-                val challenge = Challenge(challengetext = challengetext)
-                challengeViewModel.saveChallenge(challenge)
-                Log.d("test",challenge.toString())
-                Toast.makeText(context,"Reto guardado !!", Toast.LENGTH_SHORT).show()
-                builder.dismiss()
-
+        // Habilitar el botón "Guardar" cuando se ingrese texto
+        editText.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                //
             }
 
-            cancelButton.setOnClickListener {
-                builder.dismiss() }
-
-            saveButton.setOnClickListener {
-                saveChallenge()
+            override fun beforeTextChanged(
+                s: CharSequence?,
+                start: Int,
+                count: Int,
+                after: Int
+            ) {
+                //
             }
 
-            builder.show()
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                Log.d("DialogAdd", "Texto cambiado: $s")
+                if (editText.length() > 0) {
+                    saveButton.isEnabled = true
+                    saveButton.setBackgroundColor(Color.parseColor("#FF3D00"))
+                } else {
+                    saveButton.isEnabled = false
+                    saveButton.setBackgroundColor(Color.parseColor("#A19D9C"))
+                }
+            }
+        })
+        builder.setView(view)
 
+        fun saveChallenge() {
+            val challengetext = editText.text.toString()
+
+            val challenge = Challenge(challengetext = challengetext)
+            challengeViewModel.saveChallenge(challenge)
+            Log.d("test", challenge.toString())
+            Toast.makeText(context, "Reto guardado!", Toast.LENGTH_SHORT).show()
+            builder.dismiss()
 
         }
+
+        cancelButton.setOnClickListener {
+            builder.dismiss()
+        }
+
+        saveButton.setOnClickListener {
+            saveChallenge()
+            onClose.invoke()
+        }
+
+        builder.show()
+
+
     }
 }
