@@ -15,9 +15,12 @@ import android.view.animation.RotateAnimation
 import android.view.animation.TranslateAnimation
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.airbnb.lottie.LottieAnimationView
 import com.example.picobotella7.R
+import com.example.picobotella7.viewmodel.challengeViewModel
+import com.example.picobotella7.viewmodel.soundtrackViewModel
 
 class HomeFragment : Fragment() {
     private lateinit var instructionButtonView: ImageView
@@ -27,7 +30,8 @@ class HomeFragment : Fragment() {
     private lateinit var numberCountDown: TextView
     val rotationDuration = 4000L // 4 segundos
     private var mediaPlayer: MediaPlayer? = null
-
+    private lateinit var soundtrack: MediaPlayer
+    private val soundtrackViewModel: soundtrackViewModel by viewModels()
 
 
     override fun onCreateView(
@@ -44,7 +48,9 @@ class HomeFragment : Fragment() {
         goInstructions()
         goChallenges()
         startGame()
-
+        soundtrack=MediaPlayer.create(requireContext(),R.raw.soundtrack)
+        soundtrack.isLooping = true
+        soundtrack.start()
 
         return view
     }
@@ -125,11 +131,26 @@ class HomeFragment : Fragment() {
         }.start()
     }
 
+    override fun onStop() {
+        super.onStop()
+        if (soundtrack.isPlaying){
+            soundtrack.pause()
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (soundtrackViewModel.soundtrackEnabled.value==true){
+            soundtrack.start()
+        }
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         // Liberar recursos del MediaPlayer al destruir el fragmento
         mediaPlayer?.release()
         mediaPlayer = null
     }
+
 
 }
