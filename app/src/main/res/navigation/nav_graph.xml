@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/homeFragment2">
     <fragment
@@ -10,9 +11,17 @@
         <action
             android:id="@+id/action_homeFragment2_to_gameInstructions"
             app:destination="@id/gameInstructions" />
+        <action
+            android:id="@+id/action_homeFragment2_to_listChallenges"
+            app:destination="@id/listChallenges" />
     </fragment>
     <fragment
         android:id="@+id/gameInstructions"
         android:name="com.example.picobotella7.view.fragment.GameInstructions"
         android:label="GameInstructions" />
+    <fragment
+        android:id="@+id/listChallenges"
+        android:name="com.example.picobotella7.view.fragment.ListChallenges"
+        android:label="fragment_list_challenges"
+        tools:layout="@layout/fragment_list_challenges" />
 </navigation>

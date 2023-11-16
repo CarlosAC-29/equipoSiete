@@ -15,6 +15,7 @@ import com.example.picobotella7.R
 
 class Toolbar : Fragment() {
     private lateinit var instructionButtonView: ImageView
+    private lateinit var challengesButtonView: ImageView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

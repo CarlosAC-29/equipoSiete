@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -31,6 +32,7 @@
                     >
 
                     <ImageView
+                        android:id="@+id/rateButtonView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/baseline_star_border_24"
@@ -41,6 +43,7 @@
                         android:background="?selectableItemBackgroundBorderless" />
 
                     <ImageView
+                        android:id="@+id/soundButtonView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/baseline_volume_up_24"
@@ -62,6 +65,7 @@
                         android:background="?selectableItemBackgroundBorderless" />
 
                     <ImageView
+                        android:id="@+id/challengesButtonView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/baseline_add_circle_24"
@@ -72,6 +76,7 @@
                         android:background="?selectableItemBackgroundBorderless" />
 
                     <ImageView
+                        android:id="@+id/shareButtonView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/baseline_share_24"

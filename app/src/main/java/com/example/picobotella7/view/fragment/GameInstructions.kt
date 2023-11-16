@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
@@ -34,5 +35,9 @@ class GameInstructions : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val toolbar = binding.toolbarinclude.toolbartext
+        val toolbarTitle:TextView = toolbar.findViewById(R.id.toolbartext)
+        toolbarTitle.text = "Reglas del Juego"
+
     }
 }

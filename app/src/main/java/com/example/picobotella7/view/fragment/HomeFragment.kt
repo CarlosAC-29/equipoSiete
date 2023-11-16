@@ -1,32 +1,40 @@
 package com.example.picobotella7.view.fragment
 
-import android.animation.ObjectAnimator
+import android.content.Intent
 import android.media.MediaPlayer
+import android.net.Uri
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.Animation
 import android.view.animation.RotateAnimation
-import android.view.animation.TranslateAnimation
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.airbnb.lottie.LottieAnimationView
 import com.example.picobotella7.R
+import com.example.picobotella7.viewmodel.soundtrackViewModel
+
 
 class HomeFragment : Fragment() {
     private lateinit var instructionButtonView: ImageView
+    private lateinit var challengesButtonView: ImageView
+    private lateinit var rateButtonView: ImageView
+    private lateinit var soundButtonView: ImageView
+    private lateinit var shareButtonView: ImageView
     private lateinit var lottieBottleAnimation: LottieAnimationView
     private var lastRotationDegrees = 0.0f
     private lateinit var numberCountDown: TextView
     val rotationDuration = 4000L // 4 segundos
     private var mediaPlayer: MediaPlayer? = null
-
+    private lateinit var soundtrack: MediaPlayer
+    private val soundtrackViewModel: soundtrackViewModel by viewModels()
+    private var length = 0
 
 
     override fun onCreateView(
@@ -39,12 +47,58 @@ class HomeFragment : Fragment() {
         numberCountDown = view.findViewById(R.id.numberCountDown)
         mediaPlayer = MediaPlayer.create(requireContext(), R.raw.bottlesoundtrack)
         instructionButtonView = view.findViewById(R.id.instructionButtonView)
-
+        challengesButtonView = view.findViewById(R.id.challengesButtonView)
+        rateButtonView = view.findViewById(R.id.rateButtonView)
+        soundButtonView = view.findViewById(R.id.soundButtonView)
+        shareButtonView = view.findViewById(R.id.shareButtonView)
         goInstructions()
+        goChallenges()
         startGame()
+        goRate()
+        muteSound()
+        goShare()
+        soundtrack=MediaPlayer.create(requireContext(),R.raw.soundtrack)
+        soundtrack.isLooping = true
+        soundtrack.start()
+        if (soundtrackViewModel.soundtrackEnabled.value==false){
+            onStop()
+        }
 
 
         return view
+    }
+
+    private fun goShare() {
+        shareButtonView.setOnClickListener {
+            val sendIntent: Intent = Intent().apply {
+                action = Intent.ACTION_SEND
+                putExtra(Intent.EXTRA_TEXT, "https://play.google.com/store/apps/details?id=com.nequi.MobileApp&hl=es_419&gl=es")
+                type = "text/plain"
+            }
+
+            val shareIntent = Intent.createChooser(sendIntent, null)
+            startActivity(shareIntent)
+        }
+    }
+
+    private fun muteSound() {
+        soundButtonView.setOnClickListener {
+            if(soundtrack.isPlaying){
+                onStop()
+            }
+            else
+            {
+                soundtrackViewModel.setSoundtrackEnabled(enabled = true)
+                onResume()
+            }
+        }
+    }
+
+    private fun goRate() {
+        rateButtonView.setOnClickListener {
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.nequi.MobileApp&hl=es_419&gl=es"))
+            startActivity(intent)
+        }
     }
 
     private fun startGame(){
@@ -57,6 +111,11 @@ class HomeFragment : Fragment() {
     private fun goInstructions(){
         instructionButtonView.setOnClickListener{
             findNavController().navigate(R.id.action_homeFragment2_to_gameInstructions)
+        }
+    }
+    private fun goChallenges(){
+        challengesButtonView.setOnClickListener{
+            findNavController().navigate(R.id.action_homeFragment2_to_listChallenges)
         }
     }
 
@@ -118,11 +177,29 @@ class HomeFragment : Fragment() {
         }.start()
     }
 
+    override fun onStop() {
+        super.onStop()
+        if (soundtrack.isPlaying){
+            soundtrack.pause()
+            soundButtonView.setImageResource(R.drawable.baseline_volume_off_24)
+            soundtrackViewModel.setSoundtrackEnabled(enabled = false)
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (soundtrackViewModel.soundtrackEnabled.value==true){
+            soundtrack.start()
+            soundButtonView.setImageResource(R.drawable.baseline_volume_up_24)
+        }
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         // Liberar recursos del MediaPlayer al destruir el fragmento
         mediaPlayer?.release()
         mediaPlayer = null
     }
+
 
 }
