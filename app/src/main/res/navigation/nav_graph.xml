@@ -23,5 +23,13 @@
         android:id="@+id/listChallenges"
         android:name="com.example.picobotella7.view.fragment.ListChallenges"
         android:label="fragment_list_challenges"
-        tools:layout="@layout/fragment_list_challenges" />
+        tools:layout="@layout/fragment_list_challenges" >
+        <action
+            android:id="@+id/action_listChallenges_to_acctionFragment"
+            app:destination="@id/acctionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/acctionFragment"
+        android:name="com.example.picobotella7.view.fragment.AcctionFragment"
+        android:label="AcctionFragment" />
 </navigation>

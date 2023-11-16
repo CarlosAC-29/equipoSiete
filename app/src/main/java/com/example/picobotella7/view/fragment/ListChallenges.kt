@@ -10,17 +10,20 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.picobotella7.R
+import com.example.picobotella7.databinding.ItemListBinding
 import com.example.picobotella7.databinding.FragmentGameInstructionsBinding
 import com.example.picobotella7.databinding.FragmentListChallengesBinding
 import com.example.picobotella7.model.Challenge
 import com.example.picobotella7.view.adapter.ChallengesAdapter
 import com.example.picobotella7.view.dialog.DialogAdd
+import com.example.picobotella7.view.dialog.DialogDelete
 import com.example.picobotella7.viewmodel.challengeViewModel
 
 
 
-class ListChallenges : Fragment() {
+class ListChallenges : Fragment()  {
     private lateinit var binding: FragmentListChallengesBinding
+    private lateinit var bindingItem: ItemListBinding
     private val challengeViewModel: challengeViewModel by viewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,7 +47,7 @@ class ListChallenges : Fragment() {
             val recycler = binding.recyclerview
             val layoutManager =LinearLayoutManager(context)
             recycler.layoutManager = layoutManager
-            val adapter = ChallengesAdapter(listChallenge)
+            val adapter = ChallengesAdapter(listChallenge, findNavController())
             recycler.adapter = adapter
             adapter.notifyDataSetChanged()
 
@@ -66,6 +69,7 @@ class ListChallenges : Fragment() {
             dialog.showDialog(binding.root.context)
         }
     }
+
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

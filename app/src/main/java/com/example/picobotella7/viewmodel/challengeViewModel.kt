@@ -31,6 +31,11 @@ class challengeViewModel(application: Application): AndroidViewModel(application
         }
 
     }
+    fun deleteChallenge(challenge:Challenge) {
+        viewModelScope.launch {
+            challengeRepository.deleteChallenge(challenge)
+        }
+    }
 
 
 }
