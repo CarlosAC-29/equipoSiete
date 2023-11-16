@@ -16,9 +16,11 @@ interface ChallengeDao {
     @Query("SELECT * FROM Challenge")
     suspend fun getListChallenge(): MutableList<Challenge>
 
-    @Delete
-    suspend fun deleteChallenge(challenge: Challenge)
+    @Query ("DELETE FROM Challenge WHERE id= :iDChallenge")
+    suspend fun deleteChallenge(iDChallenge:Int)
 
-    @Update
-    suspend fun updateChallenge(challenge: Challenge)
+    @Query("SELECT * FROM Challenge WHERE id = :iDChallenge")
+    fun selectChallenge(iDChallenge: Int): Challenge
+    @Query ("UPDATE Challenge set challengetext= :newChallengetext WHERE id= :iDChallenge")
+    suspend fun updateChallenge(iDChallenge:Int, newChallengetext:String)
 }

@@ -20,9 +20,19 @@ class ChallengeRepository (val context:Context ){
             ChallengeDao.getListChallenge()
         }
     }
-    suspend fun deleteChallenge(challenge: Challenge){
+    suspend fun deleteChallenge(iDChallenge: Int){
         withContext(Dispatchers.IO){
-            ChallengeDao.deleteChallenge(challenge)
+            ChallengeDao.deleteChallenge(iDChallenge)
+        }
+    }
+    suspend fun selectChallenge(challengeId: Int): Challenge? {
+        return withContext(Dispatchers.IO) {
+            ChallengeDao.selectChallenge(challengeId)
+        }
+    }
+    suspend fun updateChallenge(iDChallenge:Int, newChallengetext:String){
+        withContext(Dispatchers.IO){
+            ChallengeDao.updateChallenge(iDChallenge,newChallengetext)
         }
     }
 }

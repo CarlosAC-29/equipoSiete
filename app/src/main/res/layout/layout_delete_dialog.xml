@@ -10,20 +10,18 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Agregar Reto"
+        android:text="¿Deseas eliminar el reto?"
         android:textSize="18sp"
         android:textStyle="bold"
         android:gravity="center"/>
 
-    <EditText
-        android:id="@+id/editTextDescription"
+    <TextView
+        android:id="@+id/TextDescription"
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:layout_marginTop="16dp"
-        android:hint="Escriba el reto"
-        android:inputType="text"
+        android:text="fvsfvsvfvsfvsvsvsfvfvsfvsfvfvsfvdvfvfdvdsvdvvv"
         android:maxLength="200"
-        android:backgroundTint="#FF3D00"
         />
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -31,11 +29,11 @@
         android:layout_height="match_parent">
 
         <Button
-            android:id="@+id/buttonCancel"
+            android:id="@+id/buttonNo"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:backgroundTint="#FF3D00"
-            android:text="Cancelar"
+            android:text="No"
             android:textColor="#FFFFFF"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -45,12 +43,11 @@
             app:layout_constraintVertical_bias="0.0" />
 
         <Button
-            android:id="@+id/buttonSave"
+            android:id="@+id/buttonSi"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
-            android:backgroundTint="#A19D9C"
-            android:enabled="true"
-            android:text="Guardar"
+            android:backgroundTint="#FF3D00"
+            android:text="Si"
             android:textColor="#FFFFFF"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
