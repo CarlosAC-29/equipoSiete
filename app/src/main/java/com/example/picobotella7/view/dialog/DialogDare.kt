@@ -26,6 +26,8 @@ class DialogDare (private val challengeViewModel: challengeViewModel) {
             val binding = DialogDareBinding.inflate(inflater)
             val alertDialog = AlertDialog.Builder(context).create()
 
+            val pokemonSize = challengeViewModel
+
             alertDialog.window?.setBackgroundDrawableResource(R.color.transparent)
             alertDialog.setCancelable(false)
 

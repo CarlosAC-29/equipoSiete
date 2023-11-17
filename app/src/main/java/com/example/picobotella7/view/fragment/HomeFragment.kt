@@ -92,15 +92,16 @@ class HomeFragment : Fragment() {
         return view
     }
 
-    fun searchPokemon() {
+    private fun searchPokemon() {
         runBlocking {
             try {
                 val response = pokemonApiService.getPokedex()
-                val pokemon = response.pokemon?.get(2) // Ajusta según tu modelo de datos
+                val pokemon = response.pokemon?.get(3) // Ajusta según tu modelo de datos
 
                 if (pokemon != null) {
                     // Usa la URL de la imagen para cargarla con una biblioteca como Glide o Picasso
                     val pokemonImageView: ImageView = dialogDareBinding.ImgPokemon
+                    print(pokemon.img)
                     Glide.with(requireContext()).load(pokemon.img).into(pokemonImageView)
                 }
             } catch (e: Exception) {
