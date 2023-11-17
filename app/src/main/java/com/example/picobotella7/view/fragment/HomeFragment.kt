@@ -82,10 +82,23 @@ class HomeFragment : Fragment() {
 
         return view
     }
+    private fun animateButtonTouch(view: View) {
+        val scaleAnimation = ScaleAnimation(
+            1f, 0.8f, // fromX, toX
+            1f, 0.8f, // fromY, toY
+            Animation.RELATIVE_TO_SELF, 0.5f,
+            Animation.RELATIVE_TO_SELF, 0.5f
+        )
+        scaleAnimation.duration = 100 // Duración de la animación en milisegundos
+        scaleAnimation.interpolator = AccelerateDecelerateInterpolator()
+        scaleAnimation.repeatMode = Animation.REVERSE
+        scaleAnimation.repeatCount = 1
+        view.startAnimation(scaleAnimation)
+    }
 
     private fun goShare() {
         shareButtonView.setOnClickListener {
-            it.startAnimation(createClickAnimation())
+            animateButtonTouch(shareButtonView)
             val sendIntent: Intent = Intent().apply {
                 action = Intent.ACTION_SEND
                 putExtra(Intent.EXTRA_TEXT, "https://play.google.com/store/apps/details?id=com.nequi.MobileApp&hl=es_419&gl=es")
@@ -98,7 +111,7 @@ class HomeFragment : Fragment() {
 
     private fun muteSound() {
         soundButtonView.setOnClickListener {
-            it.startAnimation(createClickAnimation())
+
             if(soundtrack.isPlaying){
                 soundtrackViewModel.setSoundtrackEnabled(enabled = false)
                 onStop()
@@ -113,7 +126,7 @@ class HomeFragment : Fragment() {
 
     private fun goRate() {
         rateButtonView.setOnClickListener {
-            it.startAnimation(createClickAnimation())
+            animateButtonTouch(rateButtonView)
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.nequi.MobileApp&hl=es_419&gl=es"))
             startActivity(intent)
         }
@@ -125,30 +138,16 @@ class HomeFragment : Fragment() {
             startCountdown()
         }
     }
-    private fun createClickAnimation(): Animation {
-        val clickAnimation = ScaleAnimation(
-            1.0f,
-            0.9f,
-            1.0f,
-            0.9f,
-            Animation.RELATIVE_TO_SELF,
-            0.5f,
-            Animation.RELATIVE_TO_SELF,
-            0.5f
-        )
-        clickAnimation.duration = 100 // Duración de la animación en milisegundos
-        clickAnimation.fillAfter = true
-        return clickAnimation
-    }
+
     private fun goInstructions(){
         instructionButtonView.setOnClickListener{
-            it.startAnimation(createClickAnimation())
+            animateButtonTouch(instructionButtonView)
             findNavController().navigate(R.id.action_homeFragment2_to_gameInstructions)
         }
     }
     private fun goChallenges(){
         challengesButtonView.setOnClickListener{
-            it.startAnimation(createClickAnimation())
+            animateButtonTouch(challengesButtonView)
             findNavController().navigate(R.id.action_homeFragment2_to_listChallenges)
         }
     }
@@ -216,6 +215,7 @@ class HomeFragment : Fragment() {
     override fun onStop() {
         super.onStop()
         if (soundtrack.isPlaying){
+            animateButtonTouch(soundButtonView)
             soundtrack.pause()
             soundButtonView.setImageResource(R.drawable.baseline_volume_off_24)
         }
@@ -224,7 +224,7 @@ class HomeFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         if (soundtrackViewModel.soundtrackEnabled.value==true){
-
+            animateButtonTouch(soundButtonView)
             soundtrack.start()
             soundButtonView.setImageResource(R.drawable.baseline_volume_up_24)
         }
