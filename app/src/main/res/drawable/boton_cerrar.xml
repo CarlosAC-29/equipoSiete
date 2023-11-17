@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- res/drawable/boton_cerrar.xml -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true">
+        <shape>
+             <!-- Color naranja cuando se presiona -->
+            <solid android:color="#FF9D00" />
+            <corners android:radius="10dp" />
+            <stroke android:color="@android:color/white" android:width="2dp" /> <!-- Borde blanco -->
+        </shape>
+    </item>
+    <item>
+        <shape>
+             <!-- Color naranja normal -->
+            <solid android:color="#FF3D00" />
+            <corners android:radius="10dp" />
+            <stroke android:color="@android:color/white" android:width="2dp" /> <!-- Borde blanco -->
+        </shape>
+    </item>
+</selector>

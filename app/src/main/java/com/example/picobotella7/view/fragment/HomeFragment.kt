@@ -3,6 +3,7 @@ package com.example.picobotella7.view.fragment
 import android.content.Intent
 import android.media.MediaPlayer
 import android.net.Uri
+import android.opengl.GLES30
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.LayoutInflater
@@ -13,11 +14,13 @@ import android.view.animation.Animation
 import android.view.animation.RotateAnimation
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.airbnb.lottie.LottieAnimationView
 import com.example.picobotella7.R
+import com.example.picobotella7.view.dialog.DialogDare.Companion.showDialog
 import com.example.picobotella7.viewmodel.soundtrackViewModel
 
 
@@ -75,7 +78,6 @@ class HomeFragment : Fragment() {
                 putExtra(Intent.EXTRA_TEXT, "https://play.google.com/store/apps/details?id=com.nequi.MobileApp&hl=es_419&gl=es")
                 type = "text/plain"
             }
-
             val shareIntent = Intent.createChooser(sendIntent, null)
             startActivity(shareIntent)
         }
@@ -84,6 +86,7 @@ class HomeFragment : Fragment() {
     private fun muteSound() {
         soundButtonView.setOnClickListener {
             if(soundtrack.isPlaying){
+                soundtrackViewModel.setSoundtrackEnabled(enabled = false)
                 onStop()
             }
             else
@@ -149,9 +152,9 @@ class HomeFragment : Fragment() {
 
             override fun onAnimationEnd(animation: Animation?) {
                 // Aquí puedes ejecutar código al final de la animación de rotación si es necesario
+                context?.let { showDialog(it) }
                 lastRotationDegrees = toDegrees
                 lottieBottleAnimation.visibility = View.VISIBLE // Restaurar la visibilidad al finalizar la animación
-
             }
 
             override fun onAnimationRepeat(animation: Animation?) {
@@ -182,7 +185,6 @@ class HomeFragment : Fragment() {
         if (soundtrack.isPlaying){
             soundtrack.pause()
             soundButtonView.setImageResource(R.drawable.baseline_volume_off_24)
-            soundtrackViewModel.setSoundtrackEnabled(enabled = false)
         }
     }
 
@@ -201,5 +203,8 @@ class HomeFragment : Fragment() {
         mediaPlayer = null
     }
 
+    private fun dear() {
+
+    }
 
 }
