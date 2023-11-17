@@ -19,17 +19,25 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.viewbinding.ViewBindings
 import com.airbnb.lottie.LottieAnimationView
+import com.bumptech.glide.Glide
 import com.example.picobotella7.R
+import com.example.picobotella7.databinding.DialogDareBinding
 import com.example.picobotella7.databinding.FragmentHomeBinding
 import com.example.picobotella7.view.dialog.DialogAdd
 import com.example.picobotella7.view.dialog.DialogDare
 import com.example.picobotella7.viewmodel.challengeViewModel
 import com.example.picobotella7.viewmodel.soundtrackViewModel
+import com.example.picobotella7.webservice.PokemonApiService
+import kotlinx.coroutines.runBlocking
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 
 class HomeFragment : Fragment() {
     private val challengeViewModel: challengeViewModel by viewModels()
+    private lateinit var dialogDareBinding: DialogDareBinding
     private lateinit var binding: FragmentHomeBinding
     private lateinit var instructionButtonView: ImageView
     private lateinit var challengesButtonView: ImageView
@@ -44,6 +52,12 @@ class HomeFragment : Fragment() {
     private lateinit var soundtrack: MediaPlayer
     private val soundtrackViewModel: soundtrackViewModel by viewModels()
     private var length = 0
+    val retrofit = Retrofit.Builder()
+        .baseUrl("https://raw.githubusercontent.com/Biuni/PokemonGO-Pokedex/master/")
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
+
+    val pokemonApiService = retrofit.create(PokemonApiService::class.java)
 
 
     override fun onCreateView(
@@ -66,6 +80,7 @@ class HomeFragment : Fragment() {
         goRate()
         muteSound()
         goShare()
+        searchPokemon()
         soundtrack=MediaPlayer.create(requireContext(),R.raw.soundtrack)
         soundtrack.isLooping = true
         soundtrack.start()
@@ -75,6 +90,24 @@ class HomeFragment : Fragment() {
 
 
         return view
+    }
+
+    fun searchPokemon() {
+        runBlocking {
+            try {
+                val response = pokemonApiService.getPokedex()
+                val pokemon = response.pokemon?.get(2) // Ajusta según tu modelo de datos
+
+                if (pokemon != null) {
+                    // Usa la URL de la imagen para cargarla con una biblioteca como Glide o Picasso
+                    val pokemonImageView: ImageView = dialogDareBinding.ImgPokemon
+                    Glide.with(requireContext()).load(pokemon.img).into(pokemonImageView)
+                }
+            } catch (e: Exception) {
+                // Maneja los errores aquí
+            }
+        }
+
     }
 
     private fun goShare() {

@@ -17,7 +17,7 @@ import kotlinx.coroutines.flow.onEach
 
 class DialogDare (private val challengeViewModel: challengeViewModel) {
 
-        @SuppressLint("MissingInflatedId")
+
         fun showDialog(
             context: Context
         ) {
@@ -28,6 +28,7 @@ class DialogDare (private val challengeViewModel: challengeViewModel) {
 
             alertDialog.window?.setBackgroundDrawableResource(R.color.transparent)
             alertDialog.setCancelable(false)
+
             binding.TextDare.text = challengeViewModel.ramdomChallenge().challengetext
 
             alertDialog.setView(binding.root)
