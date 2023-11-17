@@ -10,20 +10,18 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Agregar Reto"
+        android:text="¿Deseas eliminar el reto?"
         android:textSize="18sp"
         android:textStyle="bold"
         android:gravity="center"/>
 
-    <EditText
-        android:id="@+id/editTextDescription"
+    <TextView
+        android:id="@+id/TextDescription"
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:layout_marginTop="16dp"
-        android:hint="Escriba el reto"
-        android:inputType="text"
+        android:text="fvsfvsvfvsfvsvsvsfvfvsfvsfvfvsfvdvfvfdvdsvdvvv"
         android:maxLength="200"
-        android:backgroundTint="#FF3D00"
         />
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -31,15 +29,13 @@
         android:layout_height="match_parent">
 
         <Button
-            android:id="@+id/buttonCancel"
+            android:id="@+id/buttonNo"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
-            android:shape="rectangle"
-            android:radius="10dp"
-            android:background="@drawable/button_background"
-            android:backgroundTint="#FF3D00"
-            android:text="Cancelar"
-            android:textColor="#FFFFFF"
+
+            android:backgroundTint="@color/white"
+            android:text="No"
+            android:textColor="#FF3D00"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.324"
@@ -48,16 +44,12 @@
             app:layout_constraintVertical_bias="0.0" />
 
         <Button
-            android:id="@+id/buttonSave"
+            android:id="@+id/buttonSi"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
-            android:background="@drawable/button_background_disable"
-            android:shape="rectangle"
-            android:radius="10dp"
-            android:enabled="true"
-
-            android:text="Guardar"
-            android:textColor="#FFFFFF"
+            android:backgroundTint="@color/white"
+            android:text="Si"
+            android:textColor="#FF3D00"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.892"

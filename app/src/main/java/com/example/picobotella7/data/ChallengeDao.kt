@@ -7,6 +7,7 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
 import com.example.picobotella7.model.Challenge
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface ChallengeDao {
@@ -16,9 +17,14 @@ interface ChallengeDao {
     @Query("SELECT * FROM Challenge")
     suspend fun getListChallenge(): MutableList<Challenge>
 
-    @Delete
-    suspend fun deleteChallenge(challenge: Challenge)
+    @Query ("DELETE FROM Challenge WHERE id= :iDChallenge")
+    suspend fun deleteChallenge(iDChallenge:Int)
 
-    @Update
-    suspend fun updateChallenge(challenge: Challenge)
+    @Query("SELECT * FROM Challenge WHERE id = :iDChallenge")
+    fun selectChallenge(iDChallenge: Int): Challenge
+    @Query ("UPDATE Challenge set challengetext= :newChallengetext WHERE id= :iDChallenge")
+    suspend fun updateChallenge(iDChallenge:Int, newChallengetext:String)
+    @Query("SELECT * FROM Challenge ORDER BY RANDOM() LIMIT 1")
+    fun randomChallenge(): Flow<Challenge?>
+
 }

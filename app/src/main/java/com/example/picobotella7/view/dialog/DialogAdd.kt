@@ -10,11 +10,9 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import androidx.lifecycle.ViewModel
 import com.example.picobotella7.R
 import com.example.picobotella7.model.Challenge
 import com.example.picobotella7.viewmodel.challengeViewModel
-import androidx.fragment.app.viewModels
 
 class DialogAdd (private val challengeViewModel: challengeViewModel, private val onClose: () -> Unit){
 
@@ -51,10 +49,12 @@ class DialogAdd (private val challengeViewModel: challengeViewModel, private val
                 Log.d("DialogAdd", "Texto cambiado: $s")
                 if (editText.length() > 0) {
                     saveButton.isEnabled = true
-                    saveButton.setBackgroundColor(Color.parseColor("#FF3D00"))
+                    saveButton.setBackgroundResource(R.drawable.button_background)
+
+
                 } else {
                     saveButton.isEnabled = false
-                    saveButton.setBackgroundColor(Color.parseColor("#A19D9C"))
+                    saveButton.setBackgroundResource(R.drawable.button_background_disable)
                 }
             }
         })

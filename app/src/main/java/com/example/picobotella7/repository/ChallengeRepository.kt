@@ -5,6 +5,7 @@ import com.example.picobotella7.data.ChallengeDao
 import android.content.Context
 import com.example.picobotella7.model.Challenge
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
 
 class ChallengeRepository (val context:Context ){
@@ -18,6 +19,26 @@ class ChallengeRepository (val context:Context ){
     suspend fun getListChallenge():MutableList<Challenge>{
         return withContext(Dispatchers.IO){
             ChallengeDao.getListChallenge()
+        }
+    }
+    suspend fun deleteChallenge(iDChallenge: Int){
+        withContext(Dispatchers.IO){
+            ChallengeDao.deleteChallenge(iDChallenge)
+        }
+    }
+    suspend fun selectChallenge(challengeId: Int): Challenge? {
+        return withContext(Dispatchers.IO) {
+            ChallengeDao.selectChallenge(challengeId)
+        }
+    }
+    suspend fun ramdomChallenge(): Flow<Challenge?> {
+        return withContext(Dispatchers.IO) {
+            ChallengeDao.randomChallenge()
+        }
+    }
+    suspend fun updateChallenge(iDChallenge:Int, newChallengetext:String){
+        withContext(Dispatchers.IO){
+            ChallengeDao.updateChallenge(iDChallenge,newChallengetext)
         }
     }
 }

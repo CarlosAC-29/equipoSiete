@@ -1,5 +1,6 @@
 package com.example.picobotella7.viewmodel
 
+import kotlinx.coroutines.runBlocking
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
@@ -8,6 +9,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.picobotella7.model.Challenge
 import com.example.picobotella7.repository.ChallengeRepository
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
 class challengeViewModel(application: Application): AndroidViewModel(application){
@@ -31,6 +33,29 @@ class challengeViewModel(application: Application): AndroidViewModel(application
         }
 
     }
+    fun ramdomChallenge(): Flow<Challenge?> {
+        return runBlocking {
+            challengeRepository.ramdomChallenge()
+        }
+
+    }
+    fun deleteChallenge(iDChallenge: Int) {
+        viewModelScope.launch {
+            challengeRepository.deleteChallenge(iDChallenge)
+        }
+    }
+    fun selectChallenge(iDChallenge: Int):Challenge? {
+        return runBlocking {
+            challengeRepository.selectChallenge(iDChallenge)
+        }
+    }
+    fun updateChallenge(iDChallenge:Int, newChallengetext:String) {
+        viewModelScope.launch {
+            challengeRepository.updateChallenge(iDChallenge,newChallengetext)
+        }
+    }
+
+
 
 
 }

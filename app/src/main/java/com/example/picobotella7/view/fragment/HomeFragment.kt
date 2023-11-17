@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.Animation
 import android.view.animation.RotateAnimation
+import android.view.animation.ScaleAnimation
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.DialogFragment
@@ -73,6 +74,7 @@ class HomeFragment : Fragment() {
 
     private fun goShare() {
         shareButtonView.setOnClickListener {
+            it.startAnimation(createClickAnimation())
             val sendIntent: Intent = Intent().apply {
                 action = Intent.ACTION_SEND
                 putExtra(Intent.EXTRA_TEXT, "https://play.google.com/store/apps/details?id=com.nequi.MobileApp&hl=es_419&gl=es")
@@ -85,6 +87,7 @@ class HomeFragment : Fragment() {
 
     private fun muteSound() {
         soundButtonView.setOnClickListener {
+            it.startAnimation(createClickAnimation())
             if(soundtrack.isPlaying){
                 soundtrackViewModel.setSoundtrackEnabled(enabled = false)
                 onStop()
@@ -99,6 +102,7 @@ class HomeFragment : Fragment() {
 
     private fun goRate() {
         rateButtonView.setOnClickListener {
+            it.startAnimation(createClickAnimation())
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.nequi.MobileApp&hl=es_419&gl=es"))
             startActivity(intent)
         }
@@ -110,19 +114,36 @@ class HomeFragment : Fragment() {
             startCountdown()
         }
     }
-
+    private fun createClickAnimation(): Animation {
+        val clickAnimation = ScaleAnimation(
+            1.0f,
+            0.9f,
+            1.0f,
+            0.9f,
+            Animation.RELATIVE_TO_SELF,
+            0.5f,
+            Animation.RELATIVE_TO_SELF,
+            0.5f
+        )
+        clickAnimation.duration = 100 // Duración de la animación en milisegundos
+        clickAnimation.fillAfter = true
+        return clickAnimation
+    }
     private fun goInstructions(){
         instructionButtonView.setOnClickListener{
+            it.startAnimation(createClickAnimation())
             findNavController().navigate(R.id.action_homeFragment2_to_gameInstructions)
         }
     }
     private fun goChallenges(){
         challengesButtonView.setOnClickListener{
+            it.startAnimation(createClickAnimation())
             findNavController().navigate(R.id.action_homeFragment2_to_listChallenges)
         }
     }
 
     private fun spinBottle() {
+
         // Ángulo de inicio y fin de la rotación
         val fromDegrees = lastRotationDegrees // Usar el ángulo final de la rotación anterior como inicio
         val toDegrees = (Math.random() * 3600).toFloat() + 360.0f // Giro de 1 a 10 vueltas
@@ -191,6 +212,7 @@ class HomeFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         if (soundtrackViewModel.soundtrackEnabled.value==true){
+
             soundtrack.start()
             soundButtonView.setImageResource(R.drawable.baseline_volume_up_24)
         }
