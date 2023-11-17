@@ -87,6 +87,6 @@ dependencies {
     //Glide
     implementation ("com.github.bumptech.glide:glide:4.12.0")
 
-
+    implementation ("androidx.lifecycle:lifecycle-runtime-ktx:2.3.1")
 
 }

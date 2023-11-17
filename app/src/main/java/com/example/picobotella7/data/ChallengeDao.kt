@@ -25,6 +25,6 @@ interface ChallengeDao {
     @Query ("UPDATE Challenge set challengetext= :newChallengetext WHERE id= :iDChallenge")
     suspend fun updateChallenge(iDChallenge:Int, newChallengetext:String)
     @Query("SELECT * FROM Challenge ORDER BY RANDOM() LIMIT 1")
-    fun randomChallenge(): Flow<Challenge?>
+    fun randomChallenge(): Challenge
 
 }

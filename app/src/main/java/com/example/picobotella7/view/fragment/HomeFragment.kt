@@ -21,11 +21,16 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.airbnb.lottie.LottieAnimationView
 import com.example.picobotella7.R
-import com.example.picobotella7.view.dialog.DialogDare.Companion.showDialog
+import com.example.picobotella7.databinding.FragmentHomeBinding
+import com.example.picobotella7.view.dialog.DialogAdd
+import com.example.picobotella7.view.dialog.DialogDare
+import com.example.picobotella7.viewmodel.challengeViewModel
 import com.example.picobotella7.viewmodel.soundtrackViewModel
 
 
 class HomeFragment : Fragment() {
+    private val challengeViewModel: challengeViewModel by viewModels()
+    private lateinit var binding: FragmentHomeBinding
     private lateinit var instructionButtonView: ImageView
     private lateinit var challengesButtonView: ImageView
     private lateinit var rateButtonView: ImageView
@@ -173,7 +178,8 @@ class HomeFragment : Fragment() {
 
             override fun onAnimationEnd(animation: Animation?) {
                 // Aquí puedes ejecutar código al final de la animación de rotación si es necesario
-                context?.let { showDialog(it) }
+                val dare = DialogDare(challengeViewModel)
+                context?.let { dare.showDialog(it) }
                 lastRotationDegrees = toDegrees
                 lottieBottleAnimation.visibility = View.VISIBLE // Restaurar la visibilidad al finalizar la animación
             }

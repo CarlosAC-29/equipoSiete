@@ -20,15 +20,16 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
+                android:id="@+id/TextDare"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="70dp"
                 android:layout_marginBottom="60dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
-                android:text="Soy un dialogo personalizado"
                 android:textAlignment="center"
                 android:textColor="@color/white"
+                android:text="Hablalo"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/cl_contenedor"
@@ -53,7 +54,7 @@
             android:id="@+id/btnAceptar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/boton_cerrar"
+            android:background="@drawable/boton_cerrar"
             android:text="Cerrar"
             android:textAllCaps="false"
             android:textColor="@color/white"
