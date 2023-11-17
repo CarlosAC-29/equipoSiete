@@ -33,7 +33,7 @@ class challengeViewModel(application: Application): AndroidViewModel(application
         }
 
     }
-    fun ramdomChallenge(): Flow<Challenge?> {
+    fun ramdomChallenge(): Challenge {
         return runBlocking {
             challengeRepository.ramdomChallenge()
         }
@@ -54,6 +54,7 @@ class challengeViewModel(application: Application): AndroidViewModel(application
             challengeRepository.updateChallenge(iDChallenge,newChallengetext)
         }
     }
+
 
 
 

@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/agbalumoregular"
-            android:text="5"
+            android:text="3"
             android:textColor="#ff3d00"
             android:textSize="60sp"
             app:layout_constraintBottom_toTopOf="@+id/guideline2"

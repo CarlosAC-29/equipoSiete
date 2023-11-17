@@ -31,7 +31,7 @@ class ChallengeRepository (val context:Context ){
             ChallengeDao.selectChallenge(challengeId)
         }
     }
-    suspend fun ramdomChallenge(): Flow<Challenge?> {
+    suspend fun ramdomChallenge(): Challenge {
         return withContext(Dispatchers.IO) {
             ChallengeDao.randomChallenge()
         }

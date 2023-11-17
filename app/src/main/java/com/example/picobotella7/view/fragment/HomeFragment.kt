@@ -3,6 +3,7 @@ package com.example.picobotella7.view.fragment
 import android.content.Intent
 import android.media.MediaPlayer
 import android.net.Uri
+import android.opengl.GLES30
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.LayoutInflater
@@ -14,15 +15,27 @@ import android.view.animation.RotateAnimation
 import android.view.animation.ScaleAnimation
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.airbnb.lottie.LottieAnimationView
+import com.bumptech.glide.Glide
 import com.example.picobotella7.R
+import com.example.picobotella7.databinding.FragmentHomeBinding
+import com.example.picobotella7.view.dialog.DialogAdd
+import com.example.picobotella7.view.dialog.DialogDare
+import com.example.picobotella7.viewmodel.PokemonViewModel
+import com.example.picobotella7.viewmodel.challengeViewModel
 import com.example.picobotella7.viewmodel.soundtrackViewModel
+import com.example.picobotella7.databinding.DialogDareBinding
 
 
 class HomeFragment : Fragment() {
+    private val challengeViewModel: challengeViewModel by viewModels()
+    private val pokemonViewModel: PokemonViewModel by viewModels()
+    private lateinit var binding: FragmentHomeBinding
+    private lateinit var pokeBinding: DialogDareBinding
     private lateinit var instructionButtonView: ImageView
     private lateinit var challengesButtonView: ImageView
     private lateinit var rateButtonView: ImageView
@@ -57,6 +70,7 @@ class HomeFragment : Fragment() {
         startGame()
         goRate()
         muteSound()
+        pokemonViewModel.getPokemon()
         goShare()
         soundtrack=MediaPlayer.create(requireContext(),R.raw.soundtrack)
         soundtrack.isLooping = true
@@ -77,7 +91,6 @@ class HomeFragment : Fragment() {
                 putExtra(Intent.EXTRA_TEXT, "https://play.google.com/store/apps/details?id=com.nequi.MobileApp&hl=es_419&gl=es")
                 type = "text/plain"
             }
-
             val shareIntent = Intent.createChooser(sendIntent, null)
             startActivity(shareIntent)
         }
@@ -87,6 +100,7 @@ class HomeFragment : Fragment() {
         soundButtonView.setOnClickListener {
             it.startAnimation(createClickAnimation())
             if(soundtrack.isPlaying){
+                soundtrackViewModel.setSoundtrackEnabled(enabled = false)
                 onStop()
             }
             else
@@ -170,9 +184,10 @@ class HomeFragment : Fragment() {
 
             override fun onAnimationEnd(animation: Animation?) {
                 // Aquí puedes ejecutar código al final de la animación de rotación si es necesario
+                val dare = DialogDare(challengeViewModel, pokemonViewModel)
+                context?.let { dare.showDialog(it) }
                 lastRotationDegrees = toDegrees
                 lottieBottleAnimation.visibility = View.VISIBLE // Restaurar la visibilidad al finalizar la animación
-
             }
 
             override fun onAnimationRepeat(animation: Animation?) {
@@ -203,7 +218,6 @@ class HomeFragment : Fragment() {
         if (soundtrack.isPlaying){
             soundtrack.pause()
             soundButtonView.setImageResource(R.drawable.baseline_volume_off_24)
-            soundtrackViewModel.setSoundtrackEnabled(enabled = false)
         }
     }
 
@@ -223,5 +237,8 @@ class HomeFragment : Fragment() {
         mediaPlayer = null
     }
 
+    private fun dear() {
+
+    }
 
 }
