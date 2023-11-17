@@ -20,17 +20,22 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.airbnb.lottie.LottieAnimationView
+import com.bumptech.glide.Glide
 import com.example.picobotella7.R
 import com.example.picobotella7.databinding.FragmentHomeBinding
 import com.example.picobotella7.view.dialog.DialogAdd
 import com.example.picobotella7.view.dialog.DialogDare
+import com.example.picobotella7.viewmodel.PokemonViewModel
 import com.example.picobotella7.viewmodel.challengeViewModel
 import com.example.picobotella7.viewmodel.soundtrackViewModel
+import com.example.picobotella7.databinding.DialogDareBinding
 
 
 class HomeFragment : Fragment() {
     private val challengeViewModel: challengeViewModel by viewModels()
+    private val pokemonViewModel: PokemonViewModel by viewModels()
     private lateinit var binding: FragmentHomeBinding
+    private lateinit var pokeBinding: DialogDareBinding
     private lateinit var instructionButtonView: ImageView
     private lateinit var challengesButtonView: ImageView
     private lateinit var rateButtonView: ImageView
@@ -66,6 +71,7 @@ class HomeFragment : Fragment() {
         goRate()
         muteSound()
         goShare()
+        observerViewModel()
         soundtrack=MediaPlayer.create(requireContext(),R.raw.soundtrack)
         soundtrack.isLooping = true
         soundtrack.start()
@@ -75,6 +81,22 @@ class HomeFragment : Fragment() {
 
 
         return view
+    }
+
+    private fun observerViewModel() {
+        observerListPokemon()
+    }
+
+    private fun observerListPokemon() {
+        pokemonViewModel.getPokemon()
+        pokemonViewModel.listPokemon.observe(viewLifecycleOwner) { list ->
+            if (list != null && list.isNotEmpty()) {
+                val pokemon = list[2]
+                Glide.with(pokeBinding.root.context).load(pokemon.image).into(pokeBinding.pokemonesImg)
+            } else {
+                // La lista está vacía o nula, manejar según sea necesario
+                }
+            }
     }
 
     private fun goShare() {

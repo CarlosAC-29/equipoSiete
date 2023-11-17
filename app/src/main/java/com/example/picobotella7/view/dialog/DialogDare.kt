@@ -12,11 +12,11 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleCoroutineScope
 import com.example.picobotella7.databinding.DialogDareBinding
 import com.example.picobotella7.viewmodel.challengeViewModel
+import com.example.picobotella7.webservice.ApiUtils
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onEach
 
 class DialogDare (private val challengeViewModel: challengeViewModel) {
-
         @SuppressLint("MissingInflatedId")
         fun showDialog(
             context: Context
