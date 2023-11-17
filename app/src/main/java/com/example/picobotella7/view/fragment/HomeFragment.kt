@@ -70,8 +70,8 @@ class HomeFragment : Fragment() {
         startGame()
         goRate()
         muteSound()
+        pokemonViewModel.getPokemon()
         goShare()
-        observerViewModel()
         soundtrack=MediaPlayer.create(requireContext(),R.raw.soundtrack)
         soundtrack.isLooping = true
         soundtrack.start()
@@ -81,22 +81,6 @@ class HomeFragment : Fragment() {
 
 
         return view
-    }
-
-    private fun observerViewModel() {
-        observerListPokemon()
-    }
-
-    private fun observerListPokemon() {
-        pokemonViewModel.getPokemon()
-        pokemonViewModel.listPokemon.observe(viewLifecycleOwner) { list ->
-            if (list != null && list.isNotEmpty()) {
-                val pokemon = list[2]
-                Glide.with(pokeBinding.root.context).load(pokemon.image).into(pokeBinding.pokemonesImg)
-            } else {
-                // La lista está vacía o nula, manejar según sea necesario
-                }
-            }
     }
 
     private fun goShare() {
@@ -200,7 +184,7 @@ class HomeFragment : Fragment() {
 
             override fun onAnimationEnd(animation: Animation?) {
                 // Aquí puedes ejecutar código al final de la animación de rotación si es necesario
-                val dare = DialogDare(challengeViewModel)
+                val dare = DialogDare(challengeViewModel, pokemonViewModel)
                 context?.let { dare.showDialog(it) }
                 lastRotationDegrees = toDegrees
                 lottieBottleAnimation.visibility = View.VISIBLE // Restaurar la visibilidad al finalizar la animación

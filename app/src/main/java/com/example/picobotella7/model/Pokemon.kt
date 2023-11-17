@@ -7,8 +7,13 @@ data class Pokemon(
     val id:Int,
 
     @SerializedName("name")
-    val title: String,
+    val name: String,
 
     @SerializedName("img")
-    val image: String
+    val img: String
+)
+
+data class PokemonResponse(
+    @SerializedName("pokemon")
+    val pokemon: List<Pokemon>
 )

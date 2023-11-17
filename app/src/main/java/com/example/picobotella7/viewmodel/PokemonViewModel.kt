@@ -12,12 +12,12 @@ import kotlinx.coroutines.launch
 class PokemonViewModel (application: Application): AndroidViewModel(application) {
     val context = getApplication<Application>()
     private val pokemonRepository = PokemonRepository(context)
-    private val _listPokemon = MutableLiveData<MutableList<Pokemon>>()
-    val listPokemon: LiveData<MutableList<Pokemon>> = _listPokemon
+    private val _listPokemon = MutableLiveData<List<Pokemon>>()
+    val listPokemon: LiveData<List<Pokemon>> = _listPokemon
 
     fun getPokemon() {
         viewModelScope.launch {
-                _listPokemon.value = pokemonRepository.getPokemon()
+                _listPokemon.value = pokemonRepository.getPokemon().pokemon
 
         }
     }
