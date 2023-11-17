@@ -10,7 +10,8 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Agregar Reto"
+
+        android:text="Editar Reto"
         android:textSize="18sp"
         android:textStyle="bold"
         android:gravity="center"/>
@@ -31,13 +32,11 @@
         android:layout_height="match_parent">
 
         <Button
-            android:id="@+id/buttonCancel"
+            android:id="@+id/buttonCancelar"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
-            android:shape="rectangle"
-            android:radius="10dp"
-            android:background="@drawable/button_background"
             android:backgroundTint="#FF3D00"
+            android:background="@drawable/button_background"
             android:text="Cancelar"
             android:textColor="#FFFFFF"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -48,14 +47,12 @@
             app:layout_constraintVertical_bias="0.0" />
 
         <Button
-            android:id="@+id/buttonSave"
+            android:id="@+id/buttonSalvar"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:background="@drawable/button_background"
-            android:shape="rectangle"
-            android:radius="10dp"
+            android:backgroundTint="#FF3D00"
             android:enabled="true"
-
             android:text="Guardar"
             android:textColor="#FFFFFF"
             app:layout_constraintBottom_toBottomOf="parent"

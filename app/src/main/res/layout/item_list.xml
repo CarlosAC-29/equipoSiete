@@ -16,25 +16,28 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="4dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="5dp"
             android:backgroundTint="@color/white"
             android:elevation="8dp"
             android:foreground="?selectableItemBackground"
             card_view:cardCornerRadius="10dp"
             card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintHorizontal_bias="1.0"
+            card_view:layout_constraintHorizontal_bias="0.0"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toTopOf="parent">
+
+
             <View
                 android:id="@+id/horizontalLine"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginTop="50dp"
                 android:background="#191717"
-                card_view:layout_constraintTop_toBottomOf="@+id/ic_gruop"
+                card_view:layout_constraintEnd_toEndOf="parent"
                 card_view:layout_constraintStart_toStartOf="parent"
-                card_view:layout_constraintEnd_toEndOf="parent"/>
-
+                card_view:layout_constraintTop_toBottomOf="@+id/ic_gruop" />
 
             <TextView
                 android:id="@+id/challengeText"

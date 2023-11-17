@@ -1,5 +1,6 @@
 package com.example.picobotella7.viewmodel
 
+import kotlinx.coroutines.runBlocking
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
@@ -31,6 +32,23 @@ class challengeViewModel(application: Application): AndroidViewModel(application
         }
 
     }
+    fun deleteChallenge(iDChallenge: Int) {
+        viewModelScope.launch {
+            challengeRepository.deleteChallenge(iDChallenge)
+        }
+    }
+    fun selectChallenge(iDChallenge: Int):Challenge? {
+        return runBlocking {
+            challengeRepository.selectChallenge(iDChallenge)
+        }
+    }
+    fun updateChallenge(iDChallenge:Int, newChallengetext:String) {
+        viewModelScope.launch {
+            challengeRepository.updateChallenge(iDChallenge,newChallengetext)
+        }
+    }
+
+
 
 
 }

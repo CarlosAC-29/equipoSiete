@@ -10,11 +10,9 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import androidx.lifecycle.ViewModel
 import com.example.picobotella7.R
 import com.example.picobotella7.model.Challenge
 import com.example.picobotella7.viewmodel.challengeViewModel
-import androidx.fragment.app.viewModels
 
 class DialogAdd (private val challengeViewModel: challengeViewModel, private val onClose: () -> Unit){
 

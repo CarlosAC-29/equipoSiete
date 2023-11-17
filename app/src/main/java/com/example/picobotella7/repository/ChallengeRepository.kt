@@ -20,4 +20,23 @@ class ChallengeRepository (val context:Context ){
             ChallengeDao.getListChallenge()
         }
     }
+    suspend fun deleteChallenge(iDChallenge: Int){
+        withContext(Dispatchers.IO){
+            ChallengeDao.deleteChallenge(iDChallenge)
+        }
+    }
+    suspend fun selectChallenge(challengeId: Int): Challenge? {
+        return withContext(Dispatchers.IO) {
+            ChallengeDao.selectChallenge(challengeId)
+        }
+    }
+    suspend fun count() {
+        val challengeCount = ChallengeDao.countChallenges()
+        println("Número total de desafíos: $challengeCount")
+    }
+    suspend fun updateChallenge(iDChallenge:Int, newChallengetext:String){
+        withContext(Dispatchers.IO){
+            ChallengeDao.updateChallenge(iDChallenge,newChallengetext)
+        }
+    }
 }
