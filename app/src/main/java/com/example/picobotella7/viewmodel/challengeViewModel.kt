@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.picobotella7.model.Challenge
 import com.example.picobotella7.repository.ChallengeRepository
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
 class challengeViewModel(application: Application): AndroidViewModel(application){
@@ -29,6 +30,12 @@ class challengeViewModel(application: Application): AndroidViewModel(application
     fun getListChallenge () {
         viewModelScope.launch {
             _listChallenge.value = challengeRepository.getListChallenge()
+        }
+
+    }
+    fun ramdomChallenge(): Flow<Challenge?> {
+        return runBlocking {
+            challengeRepository.ramdomChallenge()
         }
 
     }

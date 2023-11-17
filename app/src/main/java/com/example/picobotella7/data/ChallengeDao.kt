@@ -7,6 +7,7 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
 import com.example.picobotella7.model.Challenge
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface ChallengeDao {
@@ -23,7 +24,7 @@ interface ChallengeDao {
     fun selectChallenge(iDChallenge: Int): Challenge
     @Query ("UPDATE Challenge set challengetext= :newChallengetext WHERE id= :iDChallenge")
     suspend fun updateChallenge(iDChallenge:Int, newChallengetext:String)
-    @Query("SELECT COUNT(*) FROM Challenge")
-    suspend fun countChallenges(): Int
+    @Query("SELECT * FROM Challenge ORDER BY RANDOM() LIMIT 1")
+    fun randomChallenge(): Flow<Challenge?>
 
 }

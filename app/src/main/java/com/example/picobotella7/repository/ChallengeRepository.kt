@@ -5,6 +5,7 @@ import com.example.picobotella7.data.ChallengeDao
 import android.content.Context
 import com.example.picobotella7.model.Challenge
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
 
 class ChallengeRepository (val context:Context ){
@@ -30,9 +31,10 @@ class ChallengeRepository (val context:Context ){
             ChallengeDao.selectChallenge(challengeId)
         }
     }
-    suspend fun count() {
-        val challengeCount = ChallengeDao.countChallenges()
-        println("Número total de desafíos: $challengeCount")
+    suspend fun ramdomChallenge(): Flow<Challenge?> {
+        return withContext(Dispatchers.IO) {
+            ChallengeDao.randomChallenge()
+        }
     }
     suspend fun updateChallenge(iDChallenge:Int, newChallengetext:String){
         withContext(Dispatchers.IO){

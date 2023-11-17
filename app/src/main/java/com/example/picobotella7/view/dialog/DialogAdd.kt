@@ -49,10 +49,12 @@ class DialogAdd (private val challengeViewModel: challengeViewModel, private val
                 Log.d("DialogAdd", "Texto cambiado: $s")
                 if (editText.length() > 0) {
                     saveButton.isEnabled = true
-                    saveButton.setBackgroundColor(Color.parseColor("#FF3D00"))
+                    saveButton.setBackgroundResource(R.drawable.button_background)
+
+
                 } else {
                     saveButton.isEnabled = false
-                    saveButton.setBackgroundColor(Color.parseColor("#A19D9C"))
+                    saveButton.setBackgroundResource(R.drawable.button_background_disable)
                 }
             }
         })
