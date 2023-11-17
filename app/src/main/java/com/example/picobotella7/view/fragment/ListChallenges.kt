@@ -99,6 +99,7 @@ class ListChallenges : Fragment() , OnEditClickListener {
             .setView(dialogView)
 
         val alertDialog = dialogBuilder.create()
+        alertDialog.setCancelable(false)
         val textDescription = dialogView.findViewById<TextView>(R.id.TextDescription)
         textDescription.text = challengeViewModel.selectChallenge(challengeId)?.challengetext?: "No description available"
 
@@ -125,6 +126,8 @@ class ListChallenges : Fragment() , OnEditClickListener {
 
     @SuppressLint("MissingInflatedId")
     private fun showEditDialog(challengeId: Int, afterUpdateCallback: () -> Unit) {
+
+
         val viewModel = challengeViewModel
 
         val inflater = LayoutInflater.from(requireContext())
@@ -135,6 +138,7 @@ class ListChallenges : Fragment() , OnEditClickListener {
         val buttonCancel = customLayout.findViewById<Button>(R.id.buttonCancelar)
 
         val alertDialog = AlertDialog.Builder(requireContext()).create()
+        alertDialog.setCancelable(false)
         alertDialog.setView(customLayout)
         val actualChallenge = viewModel.selectChallenge(challengeId)
         textDescription.setText(actualChallenge?.challengetext)

@@ -23,4 +23,7 @@ interface ChallengeDao {
     fun selectChallenge(iDChallenge: Int): Challenge
     @Query ("UPDATE Challenge set challengetext= :newChallengetext WHERE id= :iDChallenge")
     suspend fun updateChallenge(iDChallenge:Int, newChallengetext:String)
+    @Query("SELECT COUNT(*) FROM Challenge")
+    suspend fun countChallenges(): Int
+
 }

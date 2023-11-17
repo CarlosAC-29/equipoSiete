@@ -30,6 +30,10 @@ class ChallengeRepository (val context:Context ){
             ChallengeDao.selectChallenge(challengeId)
         }
     }
+    suspend fun count() {
+        val challengeCount = ChallengeDao.countChallenges()
+        println("Número total de desafíos: $challengeCount")
+    }
     suspend fun updateChallenge(iDChallenge:Int, newChallengetext:String){
         withContext(Dispatchers.IO){
             ChallengeDao.updateChallenge(iDChallenge,newChallengetext)
